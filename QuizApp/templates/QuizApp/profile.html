@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Profile</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .profile-pic{
+            max-width: 200px;
+            max-height:200px;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    {% include 'QuizApp/base.html' %}
+    
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card card-body">
+                <a class="btn btn-warning" href="{% url 'change_pic' %}"> Change Profile Pic</a>
+                <hr>
+                <h3 style="text-align: center">Account Settings</h3>
+                <hr>
+                <img class="profile-pic" src="{{profile.profile.url}}" >
+            
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body">
+                
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{form.as_p}}
+            
+                <input class="btn btn-primary" type="submit" name="Update Information">
+                </form>
+            </div>
+        </div>
+
+        
+
+        {% block content %}
+        <div class="col-md-9">
+            <div class="w3-container">
+                <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable">
+                    <thead class="w3-light-grey">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Score</th>
+                        </tr>
+                        <tr>
+                            <td>{{request.user.first_name}}</td>
+                            <td>{{request.user.last_name}}</td>
+                            <td>{{request.user.email}}</td>
+                            <td>{{profile.score}}</td>
+
+                        </tr>
+
+                    </thead>
+                </table>
+
+            </div>
+
+        </div>
+        {% endblock %}
+    </div>    
+</body>
+</html>

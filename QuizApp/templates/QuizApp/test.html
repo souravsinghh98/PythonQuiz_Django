@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Test</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src='main.js'></script>
+</head>
+<body>
+    {% include 'QuizApp/base.html' %}
+    
+    <form action="{% url 'result' %}" method="POST">
+        {% csrf_token %}
+        {% for field in all %}
+        <div class="w3-container w3-teal ">
+            <h4>Q{{field.id}}.{{field.ques}}</h4>
+
+        </div>
+        <div class="w3-container w3-card-4  " >
+            <input type="radio" name="{{field.id}}" value="{{field.option1}}">{{field.option1}}<br>
+            <input type="radio" name="{{field.id}}" value="{{field.option2}}">{{field.option2}}<br>
+            <input type="radio" name="{{field.id}}" value="{{field.option3}}">{{field.option3}}<br>
+            <input type="radio" name="{{field.id}}" value="{{field.option4}}">{{field.option4}}<br>
+        </div>
+        
+        
+        <br>
+
+    {% endfor %}
+    <div class="w3-container">
+        <button type="submit" class="w3-button w3-black">Submit</button>
+    </div>
+    
+    </form>
+    
+</body>
+</html>

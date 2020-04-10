@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Result</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+</head>
+<body>
+    {% include 'QuizApp/base.html' %}
+    <div class="w3-content" style="max-width: 500px">
+        <div class="w3-container w3-card w3-indigo">
+            <center><h1>Your Result</h1></center>
+        </div>
+    </div>
+
+
+    </div>
+    <div class="w3-container">
+        <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable">
+            <thead>
+                <tr class="w3-light-grey">
+                    <th>Total Quesions</th>
+                    <th>Quesions Attempted</th>
+                    <th>Correct Answers</th>
+                    <th>Total Score</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>{{count_correct}}</td>
+                <td>{{total_attempt}}</td>
+                <td>{{count}}</td>
+                <td>{{count}}</td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="w3-content" style="max-width: 500px">
+        <div class="w3-container w3-card w3-indigo">
+            <center><h1>Leader Board</h1></center>
+        </div>
+    </div>
+    <div class="w3-container">
+        <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable">
+            <thead>
+                <tr class="w3-light-grey">
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>View Profile</th>
+                </tr>
+                
+            </thead>
+            {% for leader in leaders %}
+                <tr>
+                    <td>{{leader.user}}</td>
+                    <td>{{leader.score}}</td>
+                    <td><a href="{% url 'leader' leader.id %}">Profile</a></td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+    <center>
+        <div class="w3-container">
+            <a class="w3-btn w3-teal" href="{% url 'home' %}">Go To HOME</a>
+
+        </div>
+    </center>
+</body>
+</html>
