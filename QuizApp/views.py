@@ -88,13 +88,13 @@ def UserRegistration(request):
                 uname = form.cleaned_data.get('username')
                 email = form.cleaned_data.get('email')
                 ########## mail system #########
-                '''
+                
                 subject = 'Welcome to OnlineQuiz'
                 message = 'Hi'+uname+'Thanks for using our service.'
                 recepient = email
                 print(recepient)
                 send_mail(subject,message,EMAIL_HOST_USER,[recepient],fail_silently = False)
-                '''
+                
                 messages.success(request,'User created successfuly')
                 return redirect('login')
             else:
